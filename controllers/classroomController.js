@@ -11,6 +11,7 @@ export const roomController = (req, res)=>{
         console.log(error);
         return error.status(500).json("Fail adding consulting class to DB");
       }
+      if(data.length===0) return res.status(500).json("Grado not found");
      return res.status(200).json(data);
     });
 }

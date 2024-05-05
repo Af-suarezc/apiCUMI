@@ -3,6 +3,10 @@ import { db } from "../connect.js";
 export const registerTeacher = (req, res) => {
   //TODO
   console.log("DESDE REGISTRO DE PROFESOR");
+  const { name, lastname, email, age, profession, classroomid } = req.body;
+  if (!name || !lastname || !email || !age || !profession || !classroomid) {
+    return res.status(400).json({ message: "Todos los campos son obligatorios." });
+  }
   const q = "INSERT INTO teachers (name, lastname, email, age, profession, classroom) VALUES (?, ?, ?, ?, ?, ?);";
   const values = [req.body.name, req.body.lastname, req.body.email, req.body.age, req.body.profession, req.body.classroomid];
   db.query(q, values, (error, data) => {
